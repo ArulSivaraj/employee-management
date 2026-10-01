@@ -1,0 +1,11 @@
+{
+  "name": "Employee Management",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+
+  "postCreateCommand": "docker compose -f .devcontainer/docker-compose.yml up -d",
+  "postStartCommand": "docker compose -f .devcontainer/docker-compose.yml up -d"
+}
