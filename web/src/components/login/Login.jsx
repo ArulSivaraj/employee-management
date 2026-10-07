@@ -14,6 +14,7 @@ import {
 
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
     const [showPassword, setShowPassword] = useState(false);
@@ -32,10 +33,29 @@ function Login() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         console.log(formData);
+
+        try {
+            const res = await axios.post(
+                "https://sturdy-bassoon-v66667wq6ww43p97x-8080.app.github.dev/users/login",
+                {
+                    email: formData.email,
+                    password: formData.password
+                }
+            );
+
+            if (res.status) {
+                console.log(res);
+                localStorage.setItem("token", res.data.token);
+                localStorage.setItem("userid", res.data.userid);
+                navigate("/organization");
+            }
+        } catch (e) {
+            console.error("API Error Occured :", e);
+        }
     };
 
     const handleSignup = () => {

@@ -20,15 +20,14 @@ public class Users {
     private Character isactive;
     private String password;
 
-    // Default constructor required by JPA
     public Users() {
     }
 
-    // Constructor
-    public Users(String username, String mobile, String email) {
+    public Users(String username, String mobile, String email, String password) {
         this.user_name = username;
         this.mob_no = mobile;
         this.email = email;
+        this.password = password;
     }
 
     @PrePersist
